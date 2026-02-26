@@ -6,7 +6,7 @@
 /*   By: dabdulla <dabdulla@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 23:30:08 by dabdulla          #+#    #+#             */
-/*   Updated: 2026/02/26 11:21:04 by dabdulla         ###   ########.fr       */
+/*   Updated: 2026/02/26 19:57:35 by dabdulla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	valid_pid(char *s)
 		i++;
 	}
 	pid = ft_atoi(s);
-	if ((pid < 0) || (pid > INT_MAX))
+	if ((pid <= 0) || (pid > INT_MAX))
 		return (0);
 	return (1);
 }
