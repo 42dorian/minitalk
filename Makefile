@@ -1,13 +1,13 @@
-SOURCES = server.c client.c
+SOURCES = server.c client.c server_bonus.c client_bonus.c
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFTPRINTF = ft_printf/libftprintf.a
 
 all: server client
-bonus: all
+bonus: server_bonus client_bonus
 
 server: server.o $(LIBFTPRINTF)
 	$(CC) -o $@ $^
@@ -15,7 +15,13 @@ server: server.o $(LIBFTPRINTF)
 client: client.o $(LIBFTPRINTF)
 	$(CC) -o $@ $^
 
-%.o: %.c
+server_bonus: server_bonus.o $(LIBFTPRINTF)
+	$(CC) -o $@ $^
+
+client_bonus: client_bonus.o $(LIBFTPRINTF)
+	$(CC) -o $@ $^
+
+%.o: %.c minitalk.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFTPRINTF):
@@ -27,6 +33,7 @@ clean:
 
 fclean: clean
 	rm -f server client
+	rm -f server_bonus client_bonus
 	$(MAKE) -C ft_printf fclean
 
 re: fclean all
